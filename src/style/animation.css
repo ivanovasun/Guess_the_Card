@@ -1,0 +1,183 @@
+/* выделение карточки, на которую навел мышку */
+.card-img-hover:hover {
+    transform: scale(1.2);
+    transition: transform 0.5s ease;
+}
+
+/* кадры анимации перемещивания 1ой карточки на столе */
+@keyframes shuffle_first {
+    0% {
+        transform: translate(var(--firstXmove), var(--moveY));
+    }
+
+    16.5% {
+        transform: translate(0, 49vh);
+    }
+
+    33% {
+        transform: translate(var(--thirdXmove), var(--moveY));
+    }
+
+    49.5% {
+        transform: translate(calc(var(--index) * 6), 13vh);
+    }
+
+    66% {
+        transform: translate(0, var(--moveY));
+    }
+
+    82.5% {
+        transform: translate(calc(var(--index) * (-6)), 13vh);
+    }
+
+    100% {
+        transform: translate(var(--firstXmove), var(--moveY));
+    }
+}
+
+/* перемещение 1ой карточки от калоды на финальную точку */
+.card_first-move {
+    transform: translate(var(--firstXmove), var(--moveY));
+    transition: transform 2s ease;
+}
+
+/* запуск анимации перемешивания 1ой карточки */
+.animated_first {
+    animation: shuffle_first 0.8s linear forwards 3 4s;
+    cursor: pointer;
+}
+
+/* кадры анимации перемещивания 2ой карточки на столе */
+@keyframes shuffle_second {
+    0% {
+        transform: translate(0, var(--moveY));
+    }
+
+    16.5% {
+        transform: translate(calc(var(--index) * (-6)), 13vh);
+    }
+
+    33% {
+        transform: translate(var(--firstXmove), var(--moveY));
+    }
+
+    49.5% {
+        transform: translate(0, 49vh);
+    }
+
+    66% {
+        transform: translate(var(--thirdXmove), var(--moveY));
+    }
+
+    82.5% {
+        transform: translate(calc(var(--index) * 6), 13vh);
+    }
+
+    100% {
+        transform: translate(0, var(--moveY));
+    }
+}
+
+/* перемещение 2ой карточки от калоды на финальную точку */
+.card_second-move {
+    transform: translate(0, var(--moveY));
+    transition: transform 2s ease;
+}
+
+/* запуск анимации перемешивания 2ой карточки */
+.animated_second {
+    animation: shuffle_second 0.9s linear forwards 3;
+    cursor: pointer;
+}
+
+/* кадры анимации перемещивания 3ой карточки на столе */
+@keyframes shuffle_third {
+    0% {
+        transform: translate(var(--thirdXmove), var(--moveY));
+    }
+
+    16.5% {
+        transform: translate(0, 49vh);
+    }
+
+    33% {
+        transform: translate(var(--firstXmove), var(--moveY));
+    }
+
+    49.5% {
+        transform: translate(calc(var(--index) * (-6)), 13vh);
+    }
+
+    66% {
+        transform: translate(0, var(--moveY));
+    }
+
+    82.5% {
+        transform: translate(calc(var(--index) * 6), 13vh);
+    }
+
+    100% {
+        transform: translate(var(--thirdXmove), var(--moveY));
+    }
+}
+
+/* перемещение 3ой карточки от калоды на финальную точку */
+.card_third-move {
+    transform: translate(var(--thirdXmove), var(--moveY));
+    transition: transform 2s ease;
+}
+
+/* запуск анимации перемешивания 3ой карточки */
+.animated_third {
+    animation: shuffle_third 0.95s linear forwards 3 4s;
+    cursor: pointer;
+}
+
+/* кадры анимации перемещения колоды карт */
+@keyframes card_deck_translate {
+    from {
+        transform: translateX(calc((100% - (calc(var(--index) * 3.5))) / 2));
+    }
+    to {
+        transform: translate(calc(var(--index) * 12.5), -65%);
+    }
+}
+
+/* запуск анимации перемещения колоды карт */
+.animated_card_deck {
+    animation: card_deck_translate 0.8s linear forwards 0.2s;
+}
+
+/* кадры анимации для создания блика на кнопках */
+@keyframes move-light {
+    0% {
+        transform: translateX(-4em) skewX(-45deg);
+    }
+    100% {
+        transform: translateX(16.7em) skewX(-45deg);
+    }
+}
+
+/* кадры анимации для демонстрации призовой карточки */
+@keyframes swipeWinCard {
+    0% {
+        transform: translate(0, var(--moveY));
+    }
+    50% {
+        transform: translate(0, var(--moveY)) rotateY(-180deg);
+    }
+    100% {
+        ransform: translate(0, var(--moveY));
+    }
+}
+
+/* запуск анимации демонстрации призовой карточки */
+.animated {
+    animation: swipeWinCard 2s ease-in-out 2s;
+}
+
+/* увеличение выбранной карточки */
+.card_selected {
+    transform: scale(1.3);
+    transition: transform 0.2s ease;
+}

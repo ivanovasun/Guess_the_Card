@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Угадай, где приз</title>
+  </head>
+  <body>
+    <main class="main">
+      <section class="table">
+        <div class="external-border">
+          <div class="internal-border">
+            <img class="card_deck" src="<%=require('./images/card-deck.png')%>" alt="колода карт" />
+            <div class="card_wrapper card_first">
+              <div class="card  card-front">
+                <img class="card-img" src="<%=require('./images/card.png')%>" />
+              </div>
+              <div class="card card-back">
+              </div>
+            </div>
+            <div class="card_wrapper card_second">
+              <div class="card  card-front">
+                <img class="card-img" src="<%=require('./images/card.png')%>" />
+              </div>
+              <div class="card  card-back card_second-back">
+                <img src="<%=require('./images/win_card.png')%>" />
+              </div>
+            </div>
+            <div class="card_wrapper card_third">
+              <div class="card  card-front">
+                <img class="card-img" src="<%=require('./images/card.png')%>" />
+              </div>
+              <div class="card card-back">
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn_start button_initial">
+          НАЧАТЬ ИГРУ
+        </button>
+      </section>
+      <dialog id="dialog-id">
+        <div class="popup">
+          <button type="button" class="popup__close" aria-label="Иконка для закрытия попапа"></button>
+          <p class="popup-text"></p>
+          <img  class="popup__image popup__image-left">
+          <img  class="popup__image popup__image-right">
+          <button type="button" class="popup__button" aria-label="Кнопка для начала игры с начала">СЫГРАТЬ СНАЧАЛА</button>
+        </div>
+      </dialog>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">
+        © 2025 Иванова Светлана 
+      </p>
+    </footer>
+  </body>
+</html>

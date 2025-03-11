@@ -1,0 +1,324 @@
+@import './global.css';
+@import './animation.css';
+@import './popup.css';
+
+/* общие стили */
+.main {
+    background-image: url('../images/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 95vh;
+    padding-top: var(--index);
+}
+
+.main::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgb(0 0 0 / 0.5);
+    width: 100%;
+    height: 95vh;
+}
+
+.table {
+    background-image: radial-gradient(circle, #c90830, #500127);
+    position: relative;
+    width: calc(var(--index) * 33);
+    height: 90vh;
+    padding-top: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+/* стили для границ игровой доски */
+.external-border {
+    border: solid 3px #bd7e5a;
+    width: calc(var(--index) * 31);
+    height: 80vh;
+    position: relative;
+    margin: auto;
+}
+
+.internal-border {
+    border: solid 1px #f2b5ab;
+    width: calc(var(--index) * 30);
+    height: 75vh;
+    position: relative;
+    margin: calc(var(--index) * 0.5) auto;
+}
+
+/* стили для карточек и колоды карт */
+.card_deck {
+    position: absolute;
+    left: calc((100% - (calc(var(--index) * 5.25))) / 2);
+    width: calc(var(--index) * 4.8);
+    aspect-ratio: 1/ 1.5;
+}
+
+.card_wrapper {
+    position: absolute;
+    left: calc((100% - (calc(var(--index) * 4.5))) / 2);
+}
+
+.card {
+    position: absolute;
+}
+
+.card-img,
+.card-back > img {
+    width: calc(var(--index) * 4.5);
+    aspect-ratio: 1/ 1.5;
+}
+
+.card-front {
+    z-index: 1;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.win-card {
+    box-shadow: 
+    0 0 0 5px #FFD700,
+    0 0 10px 5px #FFD700;
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+}
+
+/* стили для кнопки "начало игры" */
+.btn_start {
+    background-image: linear-gradient(to bottom, #10e19b, #04251d);
+    border-radius: 50px;
+    border: none;
+    width: calc(var(--index) * 13);
+    height: 8vh;
+    color: #fefefe;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    font-size: calc(var(--index) * 1.1);
+    font-weight: 100;
+    text-align: center;
+}
+
+.btn_start::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 15%;
+    height: 100%;
+    background-color: rgba(255 215 255 / 0.4);
+    filter: blur(15px);
+    transform: translateX(-4em) skewX(-45deg);
+    animation: move-light 3s linear infinite;
+}
+
+.no-pseudo::before {
+    content: none;
+    display: none;
+}
+
+.btn_start-nonactive {
+    background-image: linear-gradient(to bottom, #a4a4a4, #626262);
+    pointer-events: none;
+}
+
+/* стили для футера приложения */
+.footer {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+}
+
+.footer__copyright {
+    color: #fefefe;
+    font-size: calc(var(--index) * 0.65);
+}
+
+/* используется hover только там, где он есть */
+@media (hover: hover) {
+    button:not(.popup__close):hover {
+        background-image: linear-gradient(to bottom, #FFD700, #320000);
+    }    
+}
+
+/* медиа запросы для разных размеров экрана */
+@media (width > 1400px) {
+    :root {
+        --index: 26.17px;
+        --firstXmove: calc(calc(1vh + 1vw) * (-10.3));
+        --thirdXmove: calc(calc(1vh + 1vw) * 10.3);
+    }
+}
+
+@media (width < 1024px) {
+    :root {
+        --firstXmove: calc(calc(1vh + 1vw) * (-12.5));
+        --thirdXmove: calc(calc(1vh + 1vw) * 11.7);
+    }
+
+    .table {
+        height: 85vh;
+    }
+
+    .external-border {
+        height: 75vh;
+    }
+
+    .internal-border {
+        height: 71vh;
+    }
+
+    .card_deck {
+        width: calc(var(--index)*5.6);
+    }
+    .card-back>img, 
+    .card-img {
+        width: calc(var(--index)*5.3);
+    }
+    .footer__copyright {
+        font-size: calc(var(--index)*0.9);
+    }
+}
+
+@media (width < 768px) {
+    :root {
+        --thirdXmove: calc(calc(1vh + 1vw) * 11);
+    }
+
+    .card_deck {
+        width: calc(var(--index)*6.3);
+    }
+    .card-back>img, 
+    .card-img {
+        width: calc(var(--index)*6);
+    }
+
+    .card-img:hover {
+        transform: scale(1.1);
+        transition: transform 0.5s ease;
+    }
+
+    .btn_start {
+        font-size: calc(var(--index)*1.2);
+    }
+    .footer__copyright {
+        font-size: calc(var(--index)*1.15);
+    }
+}
+
+@media (width < 560px) {
+    :root {
+        --firstXmove: calc(calc(1vh + 1vw) * (-12));
+        --thirdXmove: calc(calc(1vh + 1vw) * 11);
+    }
+
+    .table {
+        width: 100%;
+    }
+
+    .external-border {
+        width: calc(100% - 5%);
+    }
+
+    .internal-border {
+        width: calc(100% - 4%);
+        height: 72vh;
+    }
+
+    .card_deck {
+        width: calc(var(--index)* 7.8);
+        left: calc(50% - var(--index)* 7.5 / 2);
+    }
+
+    .card_wrapper {
+        left: calc(50% - var(--index)* 6.2 / 2)
+    }
+    .card-back>img, 
+    .card-img {
+        width: calc(var(--index) * 7.2);
+    }
+    
+    .btn_start {
+        width: calc(100% - 45%);
+        font-size: calc(var(--index)*1.6);
+    }
+
+    @keyframes card_deck_translate {
+        from {
+            transform: translateX(calc((100% - (calc(var(--index) * 3.5))) / 2));
+        }
+        to {
+            transform: translate(calc(var(--index) * 11), -80%);
+        }
+    }
+    
+    .popup {
+        width: calc(100% - 15%);
+    }
+
+    .popup__image {
+        top: calc((var(--index)* 8.5)/2);
+    }
+}
+
+@media (width < 376px) {
+    :root {
+        --firstXmove: calc(calc(1vh + 1vw) * (-10));
+        --thirdXmove: calc(calc(1vh + 1vw) * 10);
+    }
+    
+    .card_deck {
+        left: calc(50% - var(--index)* 8.5 / 2);
+    }
+
+    .card_wrapper {
+        left: calc(50% - var(--index)* 7 / 2);
+    }
+
+    .card_selected {
+        transform: scale(1.1);
+        transition: transform 0.5s ease;
+    }
+
+    .btn_start {
+        width: calc(100% - 20%);
+        font-size: calc(var(--index)* 2);
+    }
+
+    .popup {
+        width: 100% - 5%;
+    }
+
+    .popup__close {
+        width: 20px;
+        height: 20px;
+        right: -20px;
+        top: -25px;
+    }
+
+    .popup-text {
+        font-size: calc(var(--index)* 1.5);
+    }
+    .popup__image {
+        top: calc(var(--index) / 2.5);
+        width: calc(var(--index)*2.8);
+    }
+
+    .footer__copyright {
+        font-size: calc(var(--index)*1.2);
+    }
+}

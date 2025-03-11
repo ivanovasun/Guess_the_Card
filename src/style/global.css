@@ -1,0 +1,27 @@
+/* общие стили, применяемые ко всему */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --index: calc(1vh + 1vw);
+    --moveY: 31vh;
+    --firstXmove: calc(calc(1vh + 1vw) * (-12));
+    --thirdXmove: calc(calc(1vh + 1vw) * 12);
+}
+
+/* стилизация эффектов кнопок */
+button:not(.popup__close):active {
+    transform: scale(0.95);
+    transition: transform 0.5 linear;
+}
+
+button:disabled {
+    pointer-events: none;
+}
+
+button:focus-visible {
+    outline: none;
+}
